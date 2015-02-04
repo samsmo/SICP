@@ -11,3 +11,30 @@
         ((and (> y x) (> z x)) (square-sum y z))
     )
   )
+
+;1.6
+
+;Infinite Loop; sqrt-iter always evaluates itself
+
+;1.7
+(define (average x y)
+  (/ (+ x y) 2)
+  )
+(define (improve guess x)
+       (average guess (/ x guess))
+       )
+(define (small-variance? guess x)
+  (> (abs (- (improve guess x) guess)) (* .001 guess ))
+  )
+(define (my-sqrt x)
+  (if (small-variance? guess x)
+    guess
+    (my-sqrt (improve guess x))
+    )
+  )
+
+(defin (sqrt x)
+       (my-sqrt 1.0 x)
+       )
+
+(sqrt .009)
